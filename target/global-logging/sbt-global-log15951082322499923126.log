@@ -1,0 +1,65 @@
+[0m[[0m[0mdebug[0m] [0m[0m> Exec(run, Some(c1e124de-f822-4bb6-b77e-6499b5b7e3e9), Some(CommandSource(console0)))[0m
+[0m[[0m[0mdebug[0m] [0m[0mEvaluating tasks: Compile / run[0m
+[0m[[0m[0mdebug[0m] [0m[0mRunning task... Cancel: Signal, check cycles: false, forcegc: true[0m
+[0m[[0m[33mwarn[0m] [0m[0mIn the last 10 seconds, 18.566 (185.7%) were spent in GC. [Heap: 0.16GB free of 1.00GB, max 1.00GB] Consider increasing the JVM heap using `-Xmx` or try a different collector, e.g. `-XX:+UseG1GC`, for better performance.[0m
+[0m[[0m[31merror[0m] [0m[0morg.apache.spark.sql.streaming.StreamingQueryException: Job aborted due to stage failure: Task 3 in stage 32.0 failed 1 times, most recent failure: Lost task 3.0 in stage 32.0 (TID 221) (10.132.127.124 executor driver): java.lang.OutOfMemoryError: Java heap space[0m
+[0m[[0m[31merror[0m] [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0mDriver stacktrace:[0m
+[0m[[0m[31merror[0m] [0m[0m=== Streaming Query ===[0m
+[0m[[0m[31merror[0m] [0m[0mIdentifier: [id = 0fd2ee31-2804-498b-9514-021ab259db04, runId = 94fc7c96-93c9-465c-aaee-f0c03a166e3c][0m
+[0m[[0m[31merror[0m] [0m[0mCurrent Committed Offsets: {KafkaV2[Subscribe[driver_status]]: {"driver_status":{"0":2371200}}}[0m
+[0m[[0m[31merror[0m] [0m[0mCurrent Available Offsets: {KafkaV2[Subscribe[driver_status]]: {"driver_status":{"0":2381900}}}[0m
+[0m[[0m[31merror[0m] [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0mCurrent State: ACTIVE[0m
+[0m[[0m[31merror[0m] [0m[0mThread State: RUNNABLE[0m
+[0m[[0m[31merror[0m] [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0mLogical Plan:[0m
+[0m[[0m[31merror[0m] [0m[0mWriteToMicroBatchDataSourceV1 ForeachBatchSink, 0fd2ee31-2804-498b-9514-021ab259db04, [checkpointLocation=data/checkpoints/driver_status], Append[0m
+[0m[[0m[31merror[0m] [0m[0m+- Project [data#23.driver_id AS driver_id#25, data#23.driver_location AS driver_location#26, data#23.is_available AS is_available#27][0m
+[0m[[0m[31merror[0m] [0m[0m   +- Project [from_json(StructField(driver_id,IntegerType,false), StructField(driver_location,IntegerType,true), StructField(is_available,BooleanType,true), json#21, Some(Asia/Kolkata)) AS data#23][0m
+[0m[[0m[31merror[0m] [0m[0m      +- Project [cast(value#8 as string) AS json#21][0m
+[0m[[0m[31merror[0m] [0m[0m         +- StreamingDataSourceV2Relation [key#7, value#8, topic#9, partition#10, offset#11L, timestamp#12, timestampType#13], org.apache.spark.sql.kafka010.KafkaSourceProvider$KafkaScan@938cd53, KafkaV2[Subscribe[driver_status]][0m
+[0m[[0m[31merror[0m] [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.execution.streaming.StreamExecution.org$apache$spark$sql$execution$streaming$StreamExecution$$runStream(StreamExecution.scala:332)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.execution.streaming.StreamExecution$$anon$1.$anonfun$run$1(StreamExecution.scala:211)[0m
+[0m[[0m[31merror[0m] [0m[0m	at scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:23)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.JobArtifactSet$.withActiveJobArtifactState(JobArtifactSet.scala:94)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.execution.streaming.StreamExecution$$anon$1.run(StreamExecution.scala:211)[0m
+[0m[[0m[31merror[0m] [0m[0mCaused by: org.apache.spark.SparkException: Job aborted due to stage failure: Task 3 in stage 32.0 failed 1 times, most recent failure: Lost task 3.0 in stage 32.0 (TID 221) (10.132.127.124 executor driver): java.lang.OutOfMemoryError: Java heap space[0m
+[0m[[0m[31merror[0m] [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0mDriver stacktrace:[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.scheduler.DAGScheduler.failJobAndIndependentStages(DAGScheduler.scala:2856)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.scheduler.DAGScheduler.$anonfun$abortStage$2(DAGScheduler.scala:2792)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.scheduler.DAGScheduler.$anonfun$abortStage$2$adapted(DAGScheduler.scala:2791)[0m
+[0m[[0m[31merror[0m] [0m[0m	at scala.collection.mutable.ResizableArray.foreach(ResizableArray.scala:62)[0m
+[0m[[0m[31merror[0m] [0m[0m	at scala.collection.mutable.ResizableArray.foreach$(ResizableArray.scala:55)[0m
+[0m[[0m[31merror[0m] [0m[0m	at scala.collection.mutable.ArrayBuffer.foreach(ArrayBuffer.scala:49)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.scheduler.DAGScheduler.abortStage(DAGScheduler.scala:2791)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.scheduler.DAGScheduler.$anonfun$handleTaskSetFailed$1(DAGScheduler.scala:1247)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.scheduler.DAGScheduler.$anonfun$handleTaskSetFailed$1$adapted(DAGScheduler.scala:1247)[0m
+[0m[[0m[31merror[0m] [0m[0m	at scala.Option.foreach(Option.scala:407)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.scheduler.DAGScheduler.handleTaskSetFailed(DAGScheduler.scala:1247)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.doOnReceive(DAGScheduler.scala:3060)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.onReceive(DAGScheduler.scala:2994)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.onReceive(DAGScheduler.scala:2983)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.util.EventLoop$$anon$1.run(EventLoop.scala:49)[0m
+[0m[[0m[31merror[0m] [0m[0mCaused by: java.lang.OutOfMemoryError: Java heap space[0m
+[0m[[0m[31merror[0m] [0m[0m(Compile / [31mrun[0m) org.apache.spark.sql.streaming.StreamingQueryException: Job aborted due to stage failure: Task 3 in stage 32.0 failed 1 times, most recent failure: Lost task 3.0 in stage 32.0 (TID 221) (10.132.127.124 executor driver): java.lang.OutOfMemoryError: Java heap space[0m
+[0m[[0m[31merror[0m] [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0mDriver stacktrace:[0m
+[0m[[0m[31merror[0m] [0m[0m=== Streaming Query ===[0m
+[0m[[0m[31merror[0m] [0m[0mIdentifier: [id = 0fd2ee31-2804-498b-9514-021ab259db04, runId = 94fc7c96-93c9-465c-aaee-f0c03a166e3c][0m
+[0m[[0m[31merror[0m] [0m[0mCurrent Committed Offsets: {KafkaV2[Subscribe[driver_status]]: {"driver_status":{"0":2371200}}}[0m
+[0m[[0m[31merror[0m] [0m[0mCurrent Available Offsets: {KafkaV2[Subscribe[driver_status]]: {"driver_status":{"0":2381900}}}[0m
+[0m[[0m[31merror[0m] [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0mCurrent State: ACTIVE[0m
+[0m[[0m[31merror[0m] [0m[0mThread State: RUNNABLE[0m
+[0m[[0m[31merror[0m] [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0mLogical Plan:[0m
+[0m[[0m[31merror[0m] [0m[0mWriteToMicroBatchDataSourceV1 ForeachBatchSink, 0fd2ee31-2804-498b-9514-021ab259db04, [checkpointLocation=data/checkpoints/driver_status], Append[0m
+[0m[[0m[31merror[0m] [0m[0m+- Project [data#23.driver_id AS driver_id#25, data#23.driver_location AS driver_location#26, data#23.is_available AS is_available#27][0m
+[0m[[0m[31merror[0m] [0m[0m   +- Project [from_json(StructField(driver_id,IntegerType,false), StructField(driver_location,IntegerType,true), StructField(is_available,BooleanType,true), json#21, Some(Asia/Kolkata)) AS data#23][0m
+[0m[[0m[31merror[0m] [0m[0m      +- Project [cast(value#8 as string) AS json#21][0m
+[0m[[0m[31merror[0m] [0m[0m         +- StreamingDataSourceV2Relation [key#7, value#8, topic#9, partition#10, offset#11L, timestamp#12, timestampType#13], org.apache.spark.sql.kafka010.KafkaSourceProvider$KafkaScan@938cd53, KafkaV2[Subscribe[driver_status]][0m
+[0m[[0m[31merror[0m] [0m[0mTotal time: 95 s (01:35), completed 11-Jul-2025, 2:25:02 PM[0m
+[0m[[0m[0mdebug[0m] [0m[0m> Exec(shell, None, None)[0m
