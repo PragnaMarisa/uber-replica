@@ -1,0 +1,4 @@
+[debug] [uber-replica-test] Classpath dependencies List()
+[debug] [uber-replica-test] Dependencies from configurations List(uber-replica)
+[debug] Bloop wrote the configuration of project 'uber-replica-test' to '/Users/pragnamarisa/Workspace/PetProjects/Uber-Replica/.bloop/uber-replica-test.json'
+[success] Generated .bloop/uber-replica-test.json

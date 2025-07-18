@@ -1,7 +1,8 @@
 package com.uberreplica.driver
 
-import org.apache.spark.sql.{SparkSession, DataFrame}
+import com.uberreplica.driver.UpsertDetails.createSparkSessionToReadDeltaFiles
 import org.apache.spark.sql.functions._
+import org.apache.spark.sql.{DataFrame, SparkSession}
 
 object GetDetails {
   def parseArgs(args: Array[String]): Int = {

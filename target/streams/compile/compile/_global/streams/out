@@ -1,0 +1,6 @@
+[0m[[0m[31merror[0m] [0m[0m/Users/pragnamarisa/Workspace/PetProjects/Uber-Replica/src/main/scala/com/uberreplica/ride/CompleteRide.scala:15:80: type mismatch;[0m
+[0m[[0m[31merror[0m] [0m[0m found   : String("true")[0m
+[0m[[0m[31merror[0m] [0m[0m required: Boolean[0m
+[0m[[0m[31merror[0m] [0m[0m    updateDriverStatus(spark, "data/delta/driver_current_locations", driverId, "true")[0m
+[0m[[0m[31merror[0m] [0m[0m                                                                               ^[0m
+[0m[[0m[31merror[0m] [0m[0mone error found[0m

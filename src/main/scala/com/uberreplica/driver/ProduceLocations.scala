@@ -1,8 +1,8 @@
 package com.uberreplica.driver
 
 import org.apache.kafka.clients.producer.{KafkaProducer, ProducerRecord}
+
 import java.util.Properties
-import org.apache.kafka.streams.KafkaStreams
 
 case class Driver(id: Int, var location: Int, isAvailable: Boolean = true)
 

@@ -32,6 +32,7 @@
     <orderEntry type="library" name="sbt: io.delta:delta-spark_2.12:3.1.0:jar" level="project" />
     <orderEntry type="library" name="sbt: org.apache.kafka:kafka-clients:3.7.0:jar" level="project" />
     <orderEntry type="library" name="sbt: org.apache.kafka:kafka-streams:3.6.1:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.apache.kafka:kafka-streams-scala_2.12:3.6.1:jar" level="project" />
     <orderEntry type="library" name="sbt: org.scalatest:scalatest-core_2.12:3.2.18:jar" level="project" />
     <orderEntry type="library" name="sbt: org.scalatest:scalatest-featurespec_2.12:3.2.18:jar" level="project" />
     <orderEntry type="library" name="sbt: org.scalatest:scalatest-flatspec_2.12:3.2.18:jar" level="project" />
@@ -119,6 +120,7 @@
     <orderEntry type="library" name="sbt: org.antlr:antlr4-runtime:4.9.3:jar" level="project" />
     <orderEntry type="library" name="sbt: org.slf4j:slf4j-api:2.0.7:jar" level="project" />
     <orderEntry type="library" name="sbt: com.fasterxml.jackson.core:jackson-annotations:2.15.2:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.scala-lang.modules:scala-collection-compat_2.12:2.10.0:jar" level="project" />
     <orderEntry type="library" name="sbt: org.scalatest:scalatest-compatible:3.2.18:jar" level="project" />
     <orderEntry type="library" name="sbt: org.scalactic:scalactic_2.12:3.2.18:jar" level="project" />
     <orderEntry type="library" name="sbt: com.fasterxml.jackson.core:jackson-core:2.15.2:jar" level="project" />

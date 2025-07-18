@@ -1,22 +1,196 @@
-[0m[[0m[31merror[0m] [0m[0mjava.lang.ArrayIndexOutOfBoundsException: Index 0 out of bounds for length 0[0m
-[0m[[0m[31merror[0m] [0m[0m	at com.uberreplica.ride.RequestRide$.parseArgs(RequestRide.scala:23)[0m
-[0m[[0m[31merror[0m] [0m[0m	at com.uberreplica.ride.RequestRide$.main(RequestRide.scala:30)[0m
-[0m[[0m[31merror[0m] [0m[0m	at com.uberreplica.ride.RequestRide.main(RequestRide.scala)[0m
-[0m[[0m[31merror[0m] [0m[0m	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)[0m
-[0m[[0m[31merror[0m] [0m[0m	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)[0m
-[0m[[0m[31merror[0m] [0m[0m	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)[0m
-[0m[[0m[31merror[0m] [0m[0m	at java.base/java.lang.reflect.Method.invoke(Method.java:566)[0m
-[0m[[0m[31merror[0m] [0m[0m	at sbt.Run.invokeMain(Run.scala:144)[0m
-[0m[[0m[31merror[0m] [0m[0m	at sbt.Run.execute$1(Run.scala:94)[0m
-[0m[[0m[31merror[0m] [0m[0m	at sbt.Run.$anonfun$runWithLoader$5(Run.scala:121)[0m
-[0m[[0m[31merror[0m] [0m[0m	at sbt.Run$.executeSuccess(Run.scala:187)[0m
-[0m[[0m[31merror[0m] [0m[0m	at sbt.Run.runWithLoader(Run.scala:121)[0m
-[0m[[0m[31merror[0m] [0m[0m	at sbt.Defaults$.$anonfun$bgRunTask$6(Defaults.scala:2044)[0m
-[0m[[0m[31merror[0m] [0m[0m	at sbt.Defaults$.$anonfun$termWrapper$2(Defaults.scala:1983)[0m
+[0m[[0m[31merror[0m] [0m[0morg.apache.spark.sql.streaming.StreamingQueryException: Files were added to the root of the table by a concurrent update. Please try the operation again.[0m
+[0m[[0m[31merror[0m] [0m[0mConflicting commit: {"timestamp":1752811026457,"operation":"UPDATE","operationParameters":{"predicate":["(driver_id#5081 = 70)"]},"readVersion":92,"isolationLevel":"Serializable","isBlindAppend":false,"operationMetrics":{"numRemovedFiles":"1","numRemovedBytes":"2342","numCopiedRows":"99","numDeletionVectorsAdded":"0","numDeletionVectorsRemoved":"0","numAddedChangeFiles":"0","executionTimeMs":"374","numDeletionVectorsUpdated":"0","scanTimeMs":"288","numAddedFiles":"1","numUpdatedRows":"1","numAddedBytes":"2342","rewriteTimeMs":"85"},"engineInfo":"Apache-Spark/3.5.1 Delta-Lake/3.1.0","txnId":"00f76719-20b3-47c3-9d9a-8f00f345929a"}[0m
+[0m[[0m[31merror[0m] [0m[0mRefer to https://docs.delta.io/latest/concurrency-control.html for more details.[0m
+[0m[[0m[31merror[0m] [0m[0m=== Streaming Query ===[0m
+[0m[[0m[31merror[0m] [0m[0mIdentifier: [id = 3cdca5ee-db5c-404e-b670-417196b413e4, runId = ba953dc1-3e6b-4412-a88e-0917f1eb62ac][0m
+[0m[[0m[31merror[0m] [0m[0mCurrent Committed Offsets: {KafkaV2[Subscribe[driver_status]]: {"driver_status":{"2":2002,"1":3003,"0":4095}}}[0m
+[0m[[0m[31merror[0m] [0m[0mCurrent Available Offsets: {KafkaV2[Subscribe[driver_status]]: {"driver_status":{"2":2024,"1":3036,"0":4140}}}[0m
+[0m[[0m[31merror[0m] [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0mCurrent State: ACTIVE[0m
+[0m[[0m[31merror[0m] [0m[0mThread State: RUNNABLE[0m
+[0m[[0m[31merror[0m] [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0mLogical Plan:[0m
+[0m[[0m[31merror[0m] [0m[0mWriteToMicroBatchDataSourceV1 ForeachBatchSink, 3cdca5ee-db5c-404e-b670-417196b413e4, [checkpointLocation=data/checkpoints/driver_status], Append[0m
+[0m[[0m[31merror[0m] [0m[0m+- Project [data#23.driver_id AS driver_id#25, data#23.driver_location AS driver_location#26, data#23.is_available AS is_available#27, data#23.event_time AS event_time#28][0m
+[0m[[0m[31merror[0m] [0m[0m   +- Project [from_json(StructField(driver_id,IntegerType,false), StructField(driver_location,IntegerType,true), StructField(is_available,BooleanType,true), StructField(event_time,TimestampType,true), json#21, Some(Asia/Kolkata)) AS data#23][0m
+[0m[[0m[31merror[0m] [0m[0m      +- Project [cast(value#8 as string) AS json#21][0m
+[0m[[0m[31merror[0m] [0m[0m         +- StreamingDataSourceV2Relation [key#7, value#8, topic#9, partition#10, offset#11L, timestamp#12, timestampType#13], org.apache.spark.sql.kafka010.KafkaSourceProvider$KafkaScan@122f3679, KafkaV2[Subscribe[driver_status]][0m
+[0m[[0m[31merror[0m] [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.execution.streaming.StreamExecution.org$apache$spark$sql$execution$streaming$StreamExecution$$runStream(StreamExecution.scala:332)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.execution.streaming.StreamExecution$$anon$1.$anonfun$run$1(StreamExecution.scala:211)[0m
 [0m[[0m[31merror[0m] [0m[0m	at scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:23)[0m
-[0m[[0m[31merror[0m] [0m[0m	at scala.util.Try$.apply(Try.scala:213)[0m
-[0m[[0m[31merror[0m] [0m[0m	at sbt.internal.BackgroundThreadPool$BackgroundRunnable.run(DefaultBackgroundJobService.scala:369)[0m
-[0m[[0m[31merror[0m] [0m[0m	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)[0m
-[0m[[0m[31merror[0m] [0m[0m	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)[0m
-[0m[[0m[31merror[0m] [0m[0m	at java.base/java.lang.Thread.run(Thread.java:829)[0m
-[0m[[0m[31merror[0m] [0m[0m(Compile / [31mrun[0m) java.lang.ArrayIndexOutOfBoundsException: Index 0 out of bounds for length 0[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.JobArtifactSet$.withActiveJobArtifactState(JobArtifactSet.scala:94)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.execution.streaming.StreamExecution$$anon$1.run(StreamExecution.scala:211)[0m
+[0m[[0m[31merror[0m] [0m[0mCaused by: io.delta.exceptions.ConcurrentAppendException: Files were added to the root of the table by a concurrent update. Please try the operation again.[0m
+[0m[[0m[31merror[0m] [0m[0mConflicting commit: {"timestamp":1752811026457,"operation":"UPDATE","operationParameters":{"predicate":["(driver_id#5081 = 70)"]},"readVersion":92,"isolationLevel":"Serializable","isBlindAppend":false,"operationMetrics":{"numRemovedFiles":"1","numRemovedBytes":"2342","numCopiedRows":"99","numDeletionVectorsAdded":"0","numDeletionVectorsRemoved":"0","numAddedChangeFiles":"0","executionTimeMs":"374","numDeletionVectorsUpdated":"0","scanTimeMs":"288","numAddedFiles":"1","numUpdatedRows":"1","numAddedBytes":"2342","rewriteTimeMs":"85"},"engineInfo":"Apache-Spark/3.5.1 Delta-Lake/3.1.0","txnId":"00f76719-20b3-47c3-9d9a-8f00f345929a"}[0m
+[0m[[0m[31merror[0m] [0m[0mRefer to https://docs.delta.io/latest/concurrency-control.html for more details.[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.delta.DeltaErrorsBase.concurrentAppendException(DeltaErrors.scala:2300)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.delta.DeltaErrorsBase.concurrentAppendException$(DeltaErrors.scala:2291)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.delta.DeltaErrors$.concurrentAppendException(DeltaErrors.scala:3203)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.delta.ConflictChecker.$anonfun$checkForAddedFilesThatShouldHaveBeenReadByCurrentTxn$1(ConflictChecker.scala:305)[0m
+[0m[[0m[31merror[0m] [0m[0m	at scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:23)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.delta.ConflictChecker.recordTime(ConflictChecker.scala:499)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.delta.ConflictChecker.checkForAddedFilesThatShouldHaveBeenReadByCurrentTxn(ConflictChecker.scala:276)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.delta.ConflictChecker.checkConflicts(ConflictChecker.scala:142)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.delta.OptimisticTransactionImpl.checkForConflictsAgainstVersion(OptimisticTransaction.scala:1882)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.delta.OptimisticTransactionImpl.checkForConflictsAgainstVersion$(OptimisticTransaction.scala:1872)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.delta.OptimisticTransaction.checkForConflictsAgainstVersion(OptimisticTransaction.scala:142)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.delta.OptimisticTransactionImpl.$anonfun$checkForConflicts$10(OptimisticTransaction.scala:1860)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.delta.OptimisticTransactionImpl.$anonfun$checkForConflicts$10$adapted(OptimisticTransaction.scala:1856)[0m
+[0m[[0m[31merror[0m] [0m[0m	at scala.collection.Iterator.foreach(Iterator.scala:943)[0m
+[0m[[0m[31merror[0m] [0m[0m	at scala.collection.Iterator.foreach$(Iterator.scala:943)[0m
+[0m[[0m[31merror[0m] [0m[0m	at scala.collection.AbstractIterator.foreach(Iterator.scala:1431)[0m
+[0m[[0m[31merror[0m] [0m[0m	at scala.collection.IterableLike.foreach(IterableLike.scala:74)[0m
+[0m[[0m[31merror[0m] [0m[0m	at scala.collection.IterableLike.foreach$(IterableLike.scala:73)[0m
+[0m[[0m[31merror[0m] [0m[0m	at scala.collection.AbstractIterable.foreach(Iterable.scala:56)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.delta.OptimisticTransactionImpl.$anonfun$checkForConflicts$2(OptimisticTransaction.scala:1856)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.delta.catalog.DeltaTableV2$.withEnrichedUnsupportedTableException(DeltaTableV2.scala:364)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.delta.OptimisticTransactionImpl.$anonfun$checkForConflicts$1(OptimisticTransaction.scala:1825)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.delta.metering.DeltaLogging.recordFrameProfile(DeltaLogging.scala:140)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.delta.metering.DeltaLogging.recordFrameProfile$(DeltaLogging.scala:138)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.delta.OptimisticTransaction.recordFrameProfile(OptimisticTransaction.scala:142)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.delta.metering.DeltaLogging.$anonfun$recordDeltaOperationInternal$1(DeltaLogging.scala:133)[0m
+[0m[[0m[31merror[0m] [0m[0m	at com.databricks.spark.util.DatabricksLogging.recordOperation(DatabricksLogging.scala:128)[0m
+[0m[[0m[31merror[0m] [0m[0m	at com.databricks.spark.util.DatabricksLogging.recordOperation$(DatabricksLogging.scala:117)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.delta.OptimisticTransaction.recordOperation(OptimisticTransaction.scala:142)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.delta.metering.DeltaLogging.recordDeltaOperationInternal(DeltaLogging.scala:132)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.delta.metering.DeltaLogging.recordDeltaOperation(DeltaLogging.scala:122)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.delta.metering.DeltaLogging.recordDeltaOperation$(DeltaLogging.scala:112)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.delta.OptimisticTransaction.recordDeltaOperation(OptimisticTransaction.scala:142)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.delta.OptimisticTransactionImpl.checkForConflicts(OptimisticTransaction.scala:1825)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.delta.OptimisticTransactionImpl.checkForConflicts$(OptimisticTransaction.scala:1815)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.delta.OptimisticTransaction.checkForConflicts(OptimisticTransaction.scala:142)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.delta.OptimisticTransactionImpl.$anonfun$doCommitRetryIteratively$4(OptimisticTransaction.scala:1654)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.delta.metering.DeltaLogging.recordFrameProfile(DeltaLogging.scala:140)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.delta.metering.DeltaLogging.recordFrameProfile$(DeltaLogging.scala:138)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.delta.OptimisticTransaction.recordFrameProfile(OptimisticTransaction.scala:142)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.delta.metering.DeltaLogging.$anonfun$recordDeltaOperationInternal$1(DeltaLogging.scala:133)[0m
+[0m[[0m[31merror[0m] [0m[0m	at com.databricks.spark.util.DatabricksLogging.recordOperation(DatabricksLogging.scala:128)[0m
+[0m[[0m[31merror[0m] [0m[0m	at com.databricks.spark.util.DatabricksLogging.recordOperation$(DatabricksLogging.scala:117)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.delta.OptimisticTransaction.recordOperation(OptimisticTransaction.scala:142)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.delta.metering.DeltaLogging.recordDeltaOperationInternal(DeltaLogging.scala:132)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.delta.metering.DeltaLogging.recordDeltaOperation(DeltaLogging.scala:122)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.delta.metering.DeltaLogging.recordDeltaOperation$(DeltaLogging.scala:112)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.delta.OptimisticTransaction.recordDeltaOperation(OptimisticTransaction.scala:142)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.delta.OptimisticTransactionImpl.$anonfun$doCommitRetryIteratively$3(OptimisticTransaction.scala:1652)[0m
+[0m[[0m[31merror[0m] [0m[0m	at scala.collection.immutable.Range.foreach$mVc$sp(Range.scala:158)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.delta.OptimisticTransactionImpl.$anonfun$doCommitRetryIteratively$2(OptimisticTransaction.scala:1648)[0m
+[0m[[0m[31merror[0m] [0m[0m	at scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:23)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.delta.metering.DeltaLogging.recordFrameProfile(DeltaLogging.scala:140)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.delta.metering.DeltaLogging.recordFrameProfile$(DeltaLogging.scala:138)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.delta.OptimisticTransaction.recordFrameProfile(OptimisticTransaction.scala:142)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.delta.metering.DeltaLogging.$anonfun$recordDeltaOperationInternal$1(DeltaLogging.scala:133)[0m
+[0m[[0m[31merror[0m] [0m[0m	at com.databricks.spark.util.DatabricksLogging.recordOperation(DatabricksLogging.scala:128)[0m
+[0m[[0m[31merror[0m] [0m[0m	at com.databricks.spark.util.DatabricksLogging.recordOperation$(DatabricksLogging.scala:117)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.delta.OptimisticTransaction.recordOperation(OptimisticTransaction.scala:142)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.delta.metering.DeltaLogging.recordDeltaOperationInternal(DeltaLogging.scala:132)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.delta.metering.DeltaLogging.recordDeltaOperation(DeltaLogging.scala:122)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.delta.metering.DeltaLogging.recordDeltaOperation$(DeltaLogging.scala:112)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.delta.OptimisticTransaction.recordDeltaOperation(OptimisticTransaction.scala:142)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.delta.OptimisticTransactionImpl.$anonfun$doCommitRetryIteratively$1(OptimisticTransaction.scala:1648)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.delta.SnapshotManagement.withSnapshotLockInterruptibly(SnapshotManagement.scala:72)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.delta.SnapshotManagement.withSnapshotLockInterruptibly$(SnapshotManagement.scala:69)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.delta.DeltaLog.withSnapshotLockInterruptibly(DeltaLog.scala:72)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.delta.OptimisticTransactionImpl.lockCommitIfEnabled(OptimisticTransaction.scala:1624)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.delta.OptimisticTransactionImpl.doCommitRetryIteratively(OptimisticTransaction.scala:1642)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.delta.OptimisticTransactionImpl.doCommitRetryIteratively$(OptimisticTransaction.scala:1638)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.delta.OptimisticTransaction.doCommitRetryIteratively(OptimisticTransaction.scala:142)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.delta.OptimisticTransactionImpl.liftedTree1$1(OptimisticTransaction.scala:1128)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.delta.OptimisticTransactionImpl.$anonfun$commitImpl$1(OptimisticTransaction.scala:1056)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.delta.metering.DeltaLogging.recordFrameProfile(DeltaLogging.scala:140)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.delta.metering.DeltaLogging.recordFrameProfile$(DeltaLogging.scala:138)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.delta.OptimisticTransaction.recordFrameProfile(OptimisticTransaction.scala:142)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.delta.metering.DeltaLogging.$anonfun$recordDeltaOperationInternal$1(DeltaLogging.scala:133)[0m
+[0m[[0m[31merror[0m] [0m[0m	at com.databricks.spark.util.DatabricksLogging.recordOperation(DatabricksLogging.scala:128)[0m
+[0m[[0m[31merror[0m] [0m[0m	at com.databricks.spark.util.DatabricksLogging.recordOperation$(DatabricksLogging.scala:117)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.delta.OptimisticTransaction.recordOperation(OptimisticTransaction.scala:142)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.delta.metering.DeltaLogging.recordDeltaOperationInternal(DeltaLogging.scala:132)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.delta.metering.DeltaLogging.recordDeltaOperation(DeltaLogging.scala:122)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.delta.metering.DeltaLogging.recordDeltaOperation$(DeltaLogging.scala:112)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.delta.OptimisticTransaction.recordDeltaOperation(OptimisticTransaction.scala:142)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.delta.OptimisticTransactionImpl.commitImpl(OptimisticTransaction.scala:1053)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.delta.OptimisticTransactionImpl.commitImpl$(OptimisticTransaction.scala:1048)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.delta.OptimisticTransaction.commitImpl(OptimisticTransaction.scala:142)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.delta.OptimisticTransactionImpl.commitIfNeeded(OptimisticTransaction.scala:1010)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.delta.OptimisticTransactionImpl.commitIfNeeded$(OptimisticTransaction.scala:1006)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.delta.OptimisticTransaction.commitIfNeeded(OptimisticTransaction.scala:142)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.delta.commands.MergeIntoCommand.commitAndRecordStats(MergeIntoCommand.scala:199)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.delta.commands.MergeIntoCommand.$anonfun$runMerge$2(MergeIntoCommand.scala:162)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.delta.commands.MergeIntoCommand.$anonfun$runMerge$2$adapted(MergeIntoCommand.scala:83)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.delta.DeltaLog.withNewTransaction(DeltaLog.scala:223)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.delta.commands.MergeIntoCommand.$anonfun$runMerge$1(MergeIntoCommand.scala:83)[0m
+[0m[[0m[31merror[0m] [0m[0m	at scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:23)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.delta.metering.DeltaLogging.recordFrameProfile(DeltaLogging.scala:140)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.delta.metering.DeltaLogging.recordFrameProfile$(DeltaLogging.scala:138)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.delta.commands.MergeIntoCommand.recordFrameProfile(MergeIntoCommand.scala:60)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.delta.metering.DeltaLogging.$anonfun$recordDeltaOperationInternal$1(DeltaLogging.scala:133)[0m
+[0m[[0m[31merror[0m] [0m[0m	at com.databricks.spark.util.DatabricksLogging.recordOperation(DatabricksLogging.scala:128)[0m
+[0m[[0m[31merror[0m] [0m[0m	at com.databricks.spark.util.DatabricksLogging.recordOperation$(DatabricksLogging.scala:117)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.delta.commands.MergeIntoCommand.recordOperation(MergeIntoCommand.scala:60)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.delta.metering.DeltaLogging.recordDeltaOperationInternal(DeltaLogging.scala:132)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.delta.metering.DeltaLogging.recordDeltaOperation(DeltaLogging.scala:122)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.delta.metering.DeltaLogging.recordDeltaOperation$(DeltaLogging.scala:112)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.delta.commands.MergeIntoCommand.recordDeltaOperation(MergeIntoCommand.scala:60)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.delta.commands.MergeIntoCommand.runMerge(MergeIntoCommand.scala:81)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.delta.commands.MergeIntoCommandBase.$anonfun$run$1(MergeIntoCommandBase.scala:138)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.delta.commands.merge.MergeIntoMaterializeSource.runWithMaterializedSourceLostRetries(MergeIntoMaterializeSource.scala:106)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.delta.commands.merge.MergeIntoMaterializeSource.runWithMaterializedSourceLostRetries$(MergeIntoMaterializeSource.scala:94)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.delta.commands.MergeIntoCommand.runWithMaterializedSourceLostRetries(MergeIntoCommand.scala:60)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.delta.commands.MergeIntoCommandBase.run(MergeIntoCommandBase.scala:138)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.delta.commands.MergeIntoCommandBase.run$(MergeIntoCommandBase.scala:113)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.delta.commands.MergeIntoCommand.run(MergeIntoCommand.scala:60)[0m
+[0m[[0m[31merror[0m] [0m[0m	at io.delta.tables.DeltaMergeBuilder.$anonfun$execute$2(DeltaMergeBuilder.scala:294)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.SparkSession.withActive(SparkSession.scala:900)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.delta.DeltaTableUtils$.withActiveSession(DeltaTable.scala:491)[0m
+[0m[[0m[31merror[0m] [0m[0m	at io.delta.tables.DeltaMergeBuilder.$anonfun$execute$1(DeltaMergeBuilder.scala:269)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.delta.util.AnalysisHelper.improveUnsupportedOpError(AnalysisHelper.scala:99)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.delta.util.AnalysisHelper.improveUnsupportedOpError$(AnalysisHelper.scala:85)[0m
+[0m[[0m[31merror[0m] [0m[0m	at io.delta.tables.DeltaMergeBuilder.improveUnsupportedOpError(DeltaMergeBuilder.scala:149)[0m
+[0m[[0m[31merror[0m] [0m[0m	at io.delta.tables.DeltaMergeBuilder.execute(DeltaMergeBuilder.scala:267)[0m
+[0m[[0m[31merror[0m] [0m[0m	at com.uberreplica.driver.UpsertDetails$.$anonfun$upsertDriverLocationsFromStream$1(UpsertDetails.scala:46)[0m
+[0m[[0m[31merror[0m] [0m[0m	at com.uberreplica.driver.UpsertDetails$.$anonfun$upsertDriverLocationsFromStream$1$adapted(UpsertDetails.scala:35)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.execution.streaming.sources.ForeachBatchSink.addBatch(ForeachBatchSink.scala:34)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.execution.streaming.MicroBatchExecution.$anonfun$runBatch$17(MicroBatchExecution.scala:732)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.execution.SQLExecution$.$anonfun$withNewExecutionId$6(SQLExecution.scala:125)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.execution.SQLExecution$.withSQLConfPropagated(SQLExecution.scala:201)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.execution.SQLExecution$.$anonfun$withNewExecutionId$1(SQLExecution.scala:108)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.SparkSession.withActive(SparkSession.scala:900)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.execution.SQLExecution$.withNewExecutionId(SQLExecution.scala:66)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.execution.streaming.MicroBatchExecution.$anonfun$runBatch$16(MicroBatchExecution.scala:729)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.execution.streaming.ProgressReporter.reportTimeTaken(ProgressReporter.scala:427)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.execution.streaming.ProgressReporter.reportTimeTaken$(ProgressReporter.scala:425)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.execution.streaming.StreamExecution.reportTimeTaken(StreamExecution.scala:67)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.execution.streaming.MicroBatchExecution.runBatch(MicroBatchExecution.scala:729)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.execution.streaming.MicroBatchExecution.$anonfun$runActivatedStream$2(MicroBatchExecution.scala:286)[0m
+[0m[[0m[31merror[0m] [0m[0m	at scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:23)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.execution.streaming.ProgressReporter.reportTimeTaken(ProgressReporter.scala:427)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.execution.streaming.ProgressReporter.reportTimeTaken$(ProgressReporter.scala:425)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.execution.streaming.StreamExecution.reportTimeTaken(StreamExecution.scala:67)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.execution.streaming.MicroBatchExecution.$anonfun$runActivatedStream$1(MicroBatchExecution.scala:249)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.execution.streaming.ProcessingTimeExecutor.execute(TriggerExecutor.scala:67)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.execution.streaming.MicroBatchExecution.runActivatedStream(MicroBatchExecution.scala:239)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.execution.streaming.StreamExecution.$anonfun$runStream$1(StreamExecution.scala:311)[0m
+[0m[[0m[31merror[0m] [0m[0m	at scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:23)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.SparkSession.withActive(SparkSession.scala:900)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.execution.streaming.StreamExecution.org$apache$spark$sql$execution$streaming$StreamExecution$$runStream(StreamExecution.scala:289)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.execution.streaming.StreamExecution$$anon$1.$anonfun$run$1(StreamExecution.scala:211)[0m
+[0m[[0m[31merror[0m] [0m[0m	at scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:23)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.JobArtifactSet$.withActiveJobArtifactState(JobArtifactSet.scala:94)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.execution.streaming.StreamExecution$$anon$1.run(StreamExecution.scala:211)[0m
+[0m[[0m[31merror[0m] [0m[0m(Compile / [31mrun[0m) org.apache.spark.sql.streaming.StreamingQueryException: Files were added to the root of the table by a concurrent update. Please try the operation again.[0m
+[0m[[0m[31merror[0m] [0m[0mConflicting commit: {"timestamp":1752811026457,"operation":"UPDATE","operationParameters":{"predicate":["(driver_id#5081 = 70)"]},"readVersion":92,"isolationLevel":"Serializable","isBlindAppend":false,"operationMetrics":{"numRemovedFiles":"1","numRemovedBytes":"2342","numCopiedRows":"99","numDeletionVectorsAdded":"0","numDeletionVectorsRemoved":"0","numAddedChangeFiles":"0","executionTimeMs":"374","numDeletionVectorsUpdated":"0","scanTimeMs":"288","numAddedFiles":"1","numUpdatedRows":"1","numAddedBytes":"2342","rewriteTimeMs":"85"},"engineInfo":"Apache-Spark/3.5.1 Delta-Lake/3.1.0","txnId":"00f76719-20b3-47c3-9d9a-8f00f345929a"}[0m
+[0m[[0m[31merror[0m] [0m[0mRefer to https://docs.delta.io/latest/concurrency-control.html for more details.[0m
+[0m[[0m[31merror[0m] [0m[0m=== Streaming Query ===[0m
+[0m[[0m[31merror[0m] [0m[0mIdentifier: [id = 3cdca5ee-db5c-404e-b670-417196b413e4, runId = ba953dc1-3e6b-4412-a88e-0917f1eb62ac][0m
+[0m[[0m[31merror[0m] [0m[0mCurrent Committed Offsets: {KafkaV2[Subscribe[driver_status]]: {"driver_status":{"2":2002,"1":3003,"0":4095}}}[0m
+[0m[[0m[31merror[0m] [0m[0mCurrent Available Offsets: {KafkaV2[Subscribe[driver_status]]: {"driver_status":{"2":2024,"1":3036,"0":4140}}}[0m
+[0m[[0m[31merror[0m] [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0mCurrent State: ACTIVE[0m
+[0m[[0m[31merror[0m] [0m[0mThread State: RUNNABLE[0m
+[0m[[0m[31merror[0m] [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0mLogical Plan:[0m
+[0m[[0m[31merror[0m] [0m[0mWriteToMicroBatchDataSourceV1 ForeachBatchSink, 3cdca5ee-db5c-404e-b670-417196b413e4, [checkpointLocation=data/checkpoints/driver_status], Append[0m
+[0m[[0m[31merror[0m] [0m[0m+- Project [data#23.driver_id AS driver_id#25, data#23.driver_location AS driver_location#26, data#23.is_available AS is_available#27, data#23.event_time AS event_time#28][0m
+[0m[[0m[31merror[0m] [0m[0m   +- Project [from_json(StructField(driver_id,IntegerType,false), StructField(driver_location,IntegerType,true), StructField(is_available,BooleanType,true), StructField(event_time,TimestampType,true), json#21, Some(Asia/Kolkata)) AS data#23][0m
+[0m[[0m[31merror[0m] [0m[0m      +- Project [cast(value#8 as string) AS json#21][0m
+[0m[[0m[31merror[0m] [0m[0m         +- StreamingDataSourceV2Relation [key#7, value#8, topic#9, partition#10, offset#11L, timestamp#12, timestampType#13], org.apache.spark.sql.kafka010.KafkaSourceProvider$KafkaScan@122f3679, KafkaV2[Subscribe[driver_status]][0m

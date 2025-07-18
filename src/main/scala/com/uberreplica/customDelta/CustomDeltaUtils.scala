@@ -32,6 +32,7 @@ object CustomDeltaUtils {
     StructType(Seq(
       StructField("ride_id", IntegerType, nullable = false),
       StructField("passenger_id", IntegerType, nullable = false),
+      StructField("driver_id", IntegerType, nullable = false),
       StructField("pickup_location", LongType, nullable = false),
       StructField("ride_status", StringType, nullable = true),
       StructField("timestamp", TimestampType, nullable = true),

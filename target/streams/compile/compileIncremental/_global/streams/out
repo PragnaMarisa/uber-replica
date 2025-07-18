@@ -1,6 +1,6 @@
 [0m[[0m[0mdebug[0m] [0m[0m[zinc] IncrementalCompile -----------[0m
 [0m[[0m[0mdebug[0m] [0m[0mIncrementalCompile.incrementalCompile[0m
-[0m[[0m[0mdebug[0m] [0m[0mprevious = Stamps for: 15 products, 6 sources, 7 libraries[0m
-[0m[[0m[0mdebug[0m] [0m[0mcurrent source = Set(${BASE}/src/main/scala/com/uberreplica/driver/ProduceLocations.scala, ${BASE}/src/main/scala/com/uberreplica/driver/GetLocation.scala, ${BASE}/src/main/scala/com/uberreplica/ride/RequestRide.scala, ${BASE}/src/main/scala/Helloworld.scala, ${BASE}/src/main/scala/com/uberreplica/driver/UpsertDetails.scala, ${BASE}/src/main/scala/com/uberreplica/customDelta/CustomDeltaUtils.scala)[0m
+[0m[[0m[0mdebug[0m] [0m[0mprevious = Stamps for: 19 products, 8 sources, 7 libraries[0m
+[0m[[0m[0mdebug[0m] [0m[0mcurrent source = Set(${BASE}/src/main/scala/com/uberreplica/driver/ProduceLocations.scala, ${BASE}/src/main/scala/com/uberreplica/ride/RideDetails.scala, ${BASE}/src/main/scala/com/uberreplica/ride/RequestRide.scala, ${BASE}/src/main/scala/Helloworld.scala, ${BASE}/src/main/scala/com/uberreplica/ride/CompleteRide.scala, ${BASE}/src/main/scala/com/uberreplica/driver/UpsertDetails.scala, ${BASE}/src/main/scala/com/uberreplica/customDelta/CustomDeltaUtils.scala, ${BASE}/src/main/scala/com/uberreplica/driver/GetDetails.scala)[0m
 [0m[[0m[0mdebug[0m] [0m[0m> initialChanges = InitialChanges(Changes(added = Set(), removed = Set(), changed = Set(), unmodified = ...),Set(),Set(),API Changes: Set())[0m
 [0m[[0m[0mdebug[0m] [0m[0mNo changes[0m

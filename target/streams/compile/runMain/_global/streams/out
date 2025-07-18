@@ -1,16 +1,33 @@
-[0m[[0m[31merror[0m] [0m[0morg.apache.spark.sql.AnalysisException: Failed to merge fields 'ride_date' and 'ride_date'. Failed to merge incompatible data types DateType and StringType[0m
-[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.delta.schema.SchemaMergingUtils$.$anonfun$mergeSchemas$1(SchemaMergingUtils.scala:201)[0m
-[0m[[0m[31merror[0m] [0m[0m	at scala.collection.TraversableLike.$anonfun$map$1(TraversableLike.scala:286)[0m
-[0m[[0m[31merror[0m] [0m[0m	at scala.collection.IndexedSeqOptimized.foreach(IndexedSeqOptimized.scala:36)[0m
-[0m[[0m[31merror[0m] [0m[0m	at scala.collection.IndexedSeqOptimized.foreach$(IndexedSeqOptimized.scala:33)[0m
-[0m[[0m[31merror[0m] [0m[0m	at scala.collection.mutable.ArrayOps$ofRef.foreach(ArrayOps.scala:198)[0m
-[0m[[0m[31merror[0m] [0m[0m	at scala.collection.TraversableLike.map(TraversableLike.scala:286)[0m
-[0m[[0m[31merror[0m] [0m[0m	at scala.collection.TraversableLike.map$(TraversableLike.scala:279)[0m
-[0m[[0m[31merror[0m] [0m[0m	at scala.collection.mutable.ArrayOps$ofRef.map(ArrayOps.scala:198)[0m
-[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.delta.schema.SchemaMergingUtils$.merge$1(SchemaMergingUtils.scala:181)[0m
-[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.delta.schema.SchemaMergingUtils$.mergeSchemas(SchemaMergingUtils.scala:280)[0m
-[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.delta.schema.ImplicitMetadataOperation$.mergeSchema(ImplicitMetadataOperation.scala:201)[0m
-[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.delta.schema.ImplicitMetadataOperation.updateMetadata(ImplicitMetadataOperation.scala:70)[0m
+[0m[[0m[31merror[0m] [0m[0morg.apache.spark.sql.AnalysisException: A schema mismatch detected when writing to the Delta table (Table ID: 0a7d57b3-612f-4d44-a004-994745a7c077).[0m
+[0m[[0m[31merror[0m] [0m[0mTo enable schema migration using DataFrameWriter or DataStreamWriter, please set:[0m
+[0m[[0m[31merror[0m] [0m[0m'.option("mergeSchema", "true")'.[0m
+[0m[[0m[31merror[0m] [0m[0mFor other operations, set the session configuration[0m
+[0m[[0m[31merror[0m] [0m[0mspark.databricks.delta.schema.autoMerge.enabled to "true". See the documentation[0m
+[0m[[0m[31merror[0m] [0m[0mspecific to the operation for details.[0m
+[0m[[0m[31merror[0m] [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0mTable schema:[0m
+[0m[[0m[31merror[0m] [0m[0mroot[0m
+[0m[[0m[31merror[0m] [0m[0m-- ride_id: integer (nullable = true)[0m
+[0m[[0m[31merror[0m] [0m[0m-- passenger_id: integer (nullable = true)[0m
+[0m[[0m[31merror[0m] [0m[0m-- pickup_location: long (nullable = true)[0m
+[0m[[0m[31merror[0m] [0m[0m-- ride_status: string (nullable = true)[0m
+[0m[[0m[31merror[0m] [0m[0m-- timestamp: timestamp (nullable = true)[0m
+[0m[[0m[31merror[0m] [0m[0m-- ride_date: date (nullable = true)[0m
+[0m[[0m[31merror[0m] [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0mData schema:[0m
+[0m[[0m[31merror[0m] [0m[0mroot[0m
+[0m[[0m[31merror[0m] [0m[0m-- ride_id: integer (nullable = true)[0m
+[0m[[0m[31merror[0m] [0m[0m-- passenger_id: integer (nullable = true)[0m
+[0m[[0m[31merror[0m] [0m[0m-- driver_id: integer (nullable = true)[0m
+[0m[[0m[31merror[0m] [0m[0m-- pickup_location: long (nullable = true)[0m
+[0m[[0m[31merror[0m] [0m[0m-- ride_status: string (nullable = true)[0m
+[0m[[0m[31merror[0m] [0m[0m-- timestamp: timestamp (nullable = true)[0m
+[0m[[0m[31merror[0m] [0m[0m-- ride_date: date (nullable = true)[0m
+[0m[[0m[31merror[0m] [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m         [0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.delta.MetadataMismatchErrorBuilder.finalizeAndThrow(DeltaErrors.scala:3370)[0m
+[0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.delta.schema.ImplicitMetadataOperation.updateMetadata(ImplicitMetadataOperation.scala:140)[0m
 [0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.delta.schema.ImplicitMetadataOperation.updateMetadata$(ImplicitMetadataOperation.scala:56)[0m
 [0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.delta.commands.WriteIntoDelta.updateMetadata(WriteIntoDelta.scala:76)[0m
 [0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.delta.commands.WriteIntoDelta.write(WriteIntoDelta.scala:162)[0m
@@ -48,8 +65,8 @@
 [0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.DataFrameWriter.saveToV1Source(DataFrameWriter.scala:388)[0m
 [0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.DataFrameWriter.saveInternal(DataFrameWriter.scala:304)[0m
 [0m[[0m[31merror[0m] [0m[0m	at org.apache.spark.sql.DataFrameWriter.save(DataFrameWriter.scala:240)[0m
-[0m[[0m[31merror[0m] [0m[0m	at com.uberreplica.ride.RequestRide$.insertRideRequests(RequestRide.scala:90)[0m
-[0m[[0m[31merror[0m] [0m[0m	at com.uberreplica.ride.RequestRide$.main(RequestRide.scala:32)[0m
+[0m[[0m[31merror[0m] [0m[0m	at com.uberreplica.ride.RequestRide$.insertRideRequests(RequestRide.scala:92)[0m
+[0m[[0m[31merror[0m] [0m[0m	at com.uberreplica.ride.RequestRide$.main(RequestRide.scala:34)[0m
 [0m[[0m[31merror[0m] [0m[0m	at com.uberreplica.ride.RequestRide.main(RequestRide.scala)[0m
 [0m[[0m[31merror[0m] [0m[0m	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)[0m
 [0m[[0m[31merror[0m] [0m[0m	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)[0m
@@ -68,4 +85,31 @@
 [0m[[0m[31merror[0m] [0m[0m	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)[0m
 [0m[[0m[31merror[0m] [0m[0m	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)[0m
 [0m[[0m[31merror[0m] [0m[0m	at java.base/java.lang.Thread.run(Thread.java:829)[0m
-[0m[[0m[31merror[0m] [0m[0m(Compile / [31mrunMain[0m) org.apache.spark.sql.AnalysisException: Failed to merge fields 'ride_date' and 'ride_date'. Failed to merge incompatible data types DateType and StringType[0m
+[0m[[0m[31merror[0m] [0m[0m(Compile / [31mrunMain[0m) org.apache.spark.sql.AnalysisException: A schema mismatch detected when writing to the Delta table (Table ID: 0a7d57b3-612f-4d44-a004-994745a7c077).[0m
+[0m[[0m[31merror[0m] [0m[0mTo enable schema migration using DataFrameWriter or DataStreamWriter, please set:[0m
+[0m[[0m[31merror[0m] [0m[0m'.option("mergeSchema", "true")'.[0m
+[0m[[0m[31merror[0m] [0m[0mFor other operations, set the session configuration[0m
+[0m[[0m[31merror[0m] [0m[0mspark.databricks.delta.schema.autoMerge.enabled to "true". See the documentation[0m
+[0m[[0m[31merror[0m] [0m[0mspecific to the operation for details.[0m
+[0m[[0m[31merror[0m] [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0mTable schema:[0m
+[0m[[0m[31merror[0m] [0m[0mroot[0m
+[0m[[0m[31merror[0m] [0m[0m-- ride_id: integer (nullable = true)[0m
+[0m[[0m[31merror[0m] [0m[0m-- passenger_id: integer (nullable = true)[0m
+[0m[[0m[31merror[0m] [0m[0m-- pickup_location: long (nullable = true)[0m
+[0m[[0m[31merror[0m] [0m[0m-- ride_status: string (nullable = true)[0m
+[0m[[0m[31merror[0m] [0m[0m-- timestamp: timestamp (nullable = true)[0m
+[0m[[0m[31merror[0m] [0m[0m-- ride_date: date (nullable = true)[0m
+[0m[[0m[31merror[0m] [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0mData schema:[0m
+[0m[[0m[31merror[0m] [0m[0mroot[0m
+[0m[[0m[31merror[0m] [0m[0m-- ride_id: integer (nullable = true)[0m
+[0m[[0m[31merror[0m] [0m[0m-- passenger_id: integer (nullable = true)[0m
+[0m[[0m[31merror[0m] [0m[0m-- driver_id: integer (nullable = true)[0m
+[0m[[0m[31merror[0m] [0m[0m-- pickup_location: long (nullable = true)[0m
+[0m[[0m[31merror[0m] [0m[0m-- ride_status: string (nullable = true)[0m
+[0m[[0m[31merror[0m] [0m[0m-- timestamp: timestamp (nullable = true)[0m
+[0m[[0m[31merror[0m] [0m[0m-- ride_date: date (nullable = true)[0m
+[0m[[0m[31merror[0m] [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m         [0m

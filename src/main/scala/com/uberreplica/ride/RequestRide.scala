@@ -2,20 +2,14 @@ package com.uberreplica.ride
 
 import com.uberreplica.customDelta.CustomDeltaUtils._
 import io.delta.tables.DeltaTable
-import org.apache.spark.sql.{DataFrame, SaveMode, SparkSession}
 import org.apache.spark.sql.functions._
+import org.apache.spark.sql.{SaveMode, SparkSession}
+
 import java.sql.Timestamp
 import java.time.LocalDate
 
 object RequestRide {
-  private val rideIdGenerator: () => Int = {
-    var current = 0
-    () => {
-      current += 1
-      current
-    }
-  }
-
+  
   def parseArgs(args: Array[String]): (Int, Long) = {
     if (args.length < 2) {
       println("Passenger Id and PickupLocId is not given");
@@ -30,7 +24,7 @@ object RequestRide {
     val (passengerId, pickupLocId) = parseArgs(args);
     val spark = createDeltaSparkSession()
     val riderequestId: Int = insertRideRequests(spark, passengerId, pickupLocId)
-    val driverId:Int = getNearestDriver(pickupLocId)
+    val driverId: Int = getNearestDriver(pickupLocId)
     println("Driver Id: " + driverId)
     updateRideStatus(spark, "data/delta/ride_requests", riderequestId, "ASSIGNED")
     assignDriverToRide(
@@ -39,7 +33,9 @@ object RequestRide {
       riderequestId,
       driverId
     )
-//
+
+    updateDriverStatus(spark,"data/delta/driver_current_locations",driverId,false)
+    //
   }
 
   private def getNearestDriver(pickupLocId: Long): Int = {
@@ -67,37 +63,45 @@ object RequestRide {
     }
   }
 
-  private def insertRideRequests(spark:SparkSession,passengerId: Int, pickupLocId: Long): Int = {
+  private def getNextRideId(spark: SparkSession, deltaTablePath: String): Int = {
+    import spark.implicits._
+    val df = spark.read.format("delta").load(deltaTablePath)
+    if (df.isEmpty) 1
+    else df.agg(max("ride_id")).as[Int].collect().headOption.getOrElse(0) + 1
+  }
+
+  private def insertRideRequests(spark: SparkSession, passengerId: Int, pickupLocId: Long): Int = {
     val deltaTablePath = "data/delta/ride_requests"
     val rideRequestSchema = getRideRequestSchema()
-    val colNames = Seq( "ride_id","passenger_id",  "pickup_location", "ride_status", "timestamp" ,"ride_date")
+    val colNames = Seq("ride_id", "passenger_id", "driver_id", "pickup_location", "ride_status", "timestamp", "ride_date")
     initializeDeltaTableIfNeeded(spark, deltaTablePath, rideRequestSchema, colNames)
     val now = java.time.Instant.now()
     val today = LocalDate.now()
-    val rideId = rideIdGenerator()
+    val rideId = getNextRideId(spark, deltaTablePath)
     val newRequestDF = spark.createDataFrame(Seq((
         rideId,
         passengerId,
+        0,
         pickupLocId,
         "REQUESTED",
         Timestamp.from(now),
         today,
       )))
-      .toDF("ride_id", "passenger_id",  "pickup_location", "ride_status", "timestamp", "ride_date")
+      .toDF("ride_id", "passenger_id", "driver_id", "pickup_location", "ride_status", "timestamp", "ride_date")
     newRequestDF.write
       .format("delta")
       .mode(SaveMode.Append)
       .save(deltaTablePath)
-    println(s"✅ Ride request written for passenger $passengerId at pickup location $pickupLocId")
+    println(s"✅ Ride request written for passenger $passengerId at pickup location $pickupLocId with RRide Id: $rideId")
     rideId
   }
 
   def assignDriverToRide(
-    spark: SparkSession,
-    deltaTablePath: String,
-    rideId: Int,
-    driverId: Int
-  ): Unit = {
+                          spark: SparkSession,
+                          deltaTablePath: String,
+                          rideId: Int,
+                          driverId: Int
+                        ): Unit = {
     val deltaTable = DeltaTable.forPath(spark, deltaTablePath)
     deltaTable.updateExpr(
       s"ride_id = $rideId",
@@ -106,24 +110,24 @@ object RequestRide {
   }
 
   def updateDriverStatus(
-    spark: SparkSession,
-    deltaTablePath: String,
-    driverId: Int,
-    status:String
-  ): Unit = {
+                          spark: SparkSession,
+                          deltaTablePath: String,
+                          driverId: Int,
+                          status: Boolean
+                        ): Unit = {
     val deltaTable = DeltaTable.forPath(spark, deltaTablePath)
     deltaTable.updateExpr(
       s"driver_id = $driverId",
-      Map("is_available" -> status)
+      Map("is_available" ->  s"'$status'")
     )
   }
 
   def updateRideStatus(
-    spark: SparkSession,
-    deltaTablePath: String,
-    rideId: Int,
-    newStatus: String
-  ): Unit = {
+                        spark: SparkSession,
+                        deltaTablePath: String,
+                        rideId: Int,
+                        newStatus: String
+                      ): Unit = {
     val deltaTable = DeltaTable.forPath(spark, deltaTablePath)
     deltaTable.updateExpr(
       s"ride_id = $rideId",

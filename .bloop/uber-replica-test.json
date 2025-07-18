@@ -23,6 +23,8 @@
             "/Users/pragnamarisa/Library/Caches/Coursier/v1/https/repo1.maven.org/maven2/org/apache/spark/spark-sql-kafka-0-10_2.12/3.5.1/spark-sql-kafka-0-10_2.12-3.5.1.jar",
             "/Users/pragnamarisa/Library/Caches/Coursier/v1/https/repo1.maven.org/maven2/io/delta/delta-spark_2.12/3.1.0/delta-spark_2.12-3.1.0.jar",
             "/Users/pragnamarisa/Library/Caches/Coursier/v1/https/repo1.maven.org/maven2/org/apache/kafka/kafka-clients/3.7.0/kafka-clients-3.7.0.jar",
+            "/Users/pragnamarisa/Library/Caches/Coursier/v1/https/repo1.maven.org/maven2/org/apache/kafka/kafka-streams/3.6.1/kafka-streams-3.6.1.jar",
+            "/Users/pragnamarisa/Library/Caches/Coursier/v1/https/repo1.maven.org/maven2/org/apache/kafka/kafka-streams-scala_2.12/3.6.1/kafka-streams-scala_2.12-3.6.1.jar",
             "/Users/pragnamarisa/Library/Caches/Coursier/v1/https/repo1.maven.org/maven2/org/scalatest/scalatest-core_2.12/3.2.18/scalatest-core_2.12-3.2.18.jar",
             "/Users/pragnamarisa/Library/Caches/Coursier/v1/https/repo1.maven.org/maven2/org/scalatest/scalatest-featurespec_2.12/3.2.18/scalatest-featurespec_2.12-3.2.18.jar",
             "/Users/pragnamarisa/Library/Caches/Coursier/v1/https/repo1.maven.org/maven2/org/scalatest/scalatest-flatspec_2.12/3.2.18/scalatest-flatspec_2.12-3.2.18.jar",
@@ -109,6 +111,8 @@
             "/Users/pragnamarisa/Library/Caches/Coursier/v1/https/repo1.maven.org/maven2/io/delta/delta-storage/3.1.0/delta-storage-3.1.0.jar",
             "/Users/pragnamarisa/Library/Caches/Coursier/v1/https/repo1.maven.org/maven2/org/antlr/antlr4-runtime/4.9.3/antlr4-runtime-4.9.3.jar",
             "/Users/pragnamarisa/Library/Caches/Coursier/v1/https/repo1.maven.org/maven2/org/slf4j/slf4j-api/2.0.7/slf4j-api-2.0.7.jar",
+            "/Users/pragnamarisa/Library/Caches/Coursier/v1/https/repo1.maven.org/maven2/com/fasterxml/jackson/core/jackson-annotations/2.15.2/jackson-annotations-2.15.2.jar",
+            "/Users/pragnamarisa/Library/Caches/Coursier/v1/https/repo1.maven.org/maven2/org/scala-lang/modules/scala-collection-compat_2.12/2.10.0/scala-collection-compat_2.12-2.10.0.jar",
             "/Users/pragnamarisa/Library/Caches/Coursier/v1/https/repo1.maven.org/maven2/org/scalatest/scalatest-compatible/3.2.18/scalatest-compatible-3.2.18.jar",
             "/Users/pragnamarisa/Library/Caches/Coursier/v1/https/repo1.maven.org/maven2/org/scalactic/scalactic_2.12/3.2.18/scalactic_2.12-3.2.18.jar",
             "/Users/pragnamarisa/Library/Caches/Coursier/v1/https/repo1.maven.org/maven2/com/fasterxml/jackson/core/jackson-core/2.15.2/jackson-core-2.15.2.jar",
@@ -116,7 +120,6 @@
             "/Users/pragnamarisa/Library/Caches/Coursier/v1/https/repo1.maven.org/maven2/com/esotericsoftware/kryo-shaded/4.0.2/kryo-shaded-4.0.2.jar",
             "/Users/pragnamarisa/Library/Caches/Coursier/v1/https/repo1.maven.org/maven2/commons-logging/commons-logging/1.1.3/commons-logging-1.1.3.jar",
             "/Users/pragnamarisa/Library/Caches/Coursier/v1/https/repo1.maven.org/maven2/org/fusesource/leveldbjni/leveldbjni-all/1.8/leveldbjni-all-1.8.jar",
-            "/Users/pragnamarisa/Library/Caches/Coursier/v1/https/repo1.maven.org/maven2/com/fasterxml/jackson/core/jackson-annotations/2.15.2/jackson-annotations-2.15.2.jar",
             "/Users/pragnamarisa/Library/Caches/Coursier/v1/https/repo1.maven.org/maven2/com/google/crypto/tink/tink/1.9.0/tink-1.9.0.jar",
             "/Users/pragnamarisa/Library/Caches/Coursier/v1/https/repo1.maven.org/maven2/org/slf4j/jul-to-slf4j/2.0.7/jul-to-slf4j-2.0.7.jar",
             "/Users/pragnamarisa/Library/Caches/Coursier/v1/https/repo1.maven.org/maven2/org/slf4j/jcl-over-slf4j/2.0.7/jcl-over-slf4j-2.0.7.jar",
@@ -391,6 +394,40 @@
                             "name": "kafka-clients",
                             "classifier": "sources",
                             "path": "/Users/pragnamarisa/Library/Caches/Coursier/v1/https/repo1.maven.org/maven2/org/apache/kafka/kafka-clients/3.7.0/kafka-clients-3.7.0-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.apache.kafka",
+                    "name": "kafka-streams",
+                    "version": "3.6.1",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "kafka-streams",
+                            "path": "/Users/pragnamarisa/Library/Caches/Coursier/v1/https/repo1.maven.org/maven2/org/apache/kafka/kafka-streams/3.6.1/kafka-streams-3.6.1.jar"
+                        },
+                        {
+                            "name": "kafka-streams",
+                            "classifier": "sources",
+                            "path": "/Users/pragnamarisa/Library/Caches/Coursier/v1/https/repo1.maven.org/maven2/org/apache/kafka/kafka-streams/3.6.1/kafka-streams-3.6.1-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.apache.kafka",
+                    "name": "kafka-streams-scala_2.12",
+                    "version": "3.6.1",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "kafka-streams-scala_2.12",
+                            "path": "/Users/pragnamarisa/Library/Caches/Coursier/v1/https/repo1.maven.org/maven2/org/apache/kafka/kafka-streams-scala_2.12/3.6.1/kafka-streams-scala_2.12-3.6.1.jar"
+                        },
+                        {
+                            "name": "kafka-streams-scala_2.12",
+                            "classifier": "sources",
+                            "path": "/Users/pragnamarisa/Library/Caches/Coursier/v1/https/repo1.maven.org/maven2/org/apache/kafka/kafka-streams-scala_2.12/3.6.1/kafka-streams-scala_2.12-3.6.1-sources.jar"
                         }
                     ]
                 },
@@ -1525,6 +1562,40 @@
                 },
                 {
                     "organization": "com.fasterxml.jackson.core",
+                    "name": "jackson-annotations",
+                    "version": "2.15.2",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "jackson-annotations",
+                            "path": "/Users/pragnamarisa/Library/Caches/Coursier/v1/https/repo1.maven.org/maven2/com/fasterxml/jackson/core/jackson-annotations/2.15.2/jackson-annotations-2.15.2.jar"
+                        },
+                        {
+                            "name": "jackson-annotations",
+                            "classifier": "sources",
+                            "path": "/Users/pragnamarisa/Library/Caches/Coursier/v1/https/repo1.maven.org/maven2/com/fasterxml/jackson/core/jackson-annotations/2.15.2/jackson-annotations-2.15.2-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.scala-lang.modules",
+                    "name": "scala-collection-compat_2.12",
+                    "version": "2.10.0",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "scala-collection-compat_2.12",
+                            "path": "/Users/pragnamarisa/Library/Caches/Coursier/v1/https/repo1.maven.org/maven2/org/scala-lang/modules/scala-collection-compat_2.12/2.10.0/scala-collection-compat_2.12-2.10.0.jar"
+                        },
+                        {
+                            "name": "scala-collection-compat_2.12",
+                            "classifier": "sources",
+                            "path": "/Users/pragnamarisa/Library/Caches/Coursier/v1/https/repo1.maven.org/maven2/org/scala-lang/modules/scala-collection-compat_2.12/2.10.0/scala-collection-compat_2.12-2.10.0-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "com.fasterxml.jackson.core",
                     "name": "jackson-core",
                     "version": "2.15.2",
                     "configurations": "default",
@@ -1605,23 +1676,6 @@
                             "name": "leveldbjni-all",
                             "classifier": "sources",
                             "path": "/Users/pragnamarisa/Library/Caches/Coursier/v1/https/repo1.maven.org/maven2/org/fusesource/leveldbjni/leveldbjni-all/1.8/leveldbjni-all-1.8-sources.jar"
-                        }
-                    ]
-                },
-                {
-                    "organization": "com.fasterxml.jackson.core",
-                    "name": "jackson-annotations",
-                    "version": "2.15.2",
-                    "configurations": "default",
-                    "artifacts": [
-                        {
-                            "name": "jackson-annotations",
-                            "path": "/Users/pragnamarisa/Library/Caches/Coursier/v1/https/repo1.maven.org/maven2/com/fasterxml/jackson/core/jackson-annotations/2.15.2/jackson-annotations-2.15.2.jar"
-                        },
-                        {
-                            "name": "jackson-annotations",
-                            "classifier": "sources",
-                            "path": "/Users/pragnamarisa/Library/Caches/Coursier/v1/https/repo1.maven.org/maven2/com/fasterxml/jackson/core/jackson-annotations/2.15.2/jackson-annotations-2.15.2-sources.jar"
                         }
                     ]
                 },
